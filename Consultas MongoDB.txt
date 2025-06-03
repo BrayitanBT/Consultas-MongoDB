@@ -1,0 +1,30 @@
+show dbs
+use Prueba
+db.consultasMongo.insertMany
+([
+  {
+    id_: 123456,
+    nombre: "Juan",
+    edad: 30,
+    RH: "O+"
+  },
+  {
+    id_: 14789,
+    nombre: "Luisa",
+    edad: 45,
+    RH: "A-"
+  },
+  {
+    id_: 18975,
+    nombre: "Carlos",
+    edad: 20,
+    RH: "B+"
+  }
+])
+db.consultasMongo.find()
+db.consultasMongo.updateOne({id_:123456}, {$set:{nombre:"BrayanBT"}})
+db.consultasMongo.updateOne({id_:14789}, {$unset:{RH:""}})
+db.consultasMongo.updateOne({id_:14789}, {$max:{edad:60}})
+db.consultasMongo.updateOne({id_:{$exists:true}}, {$rename:{id_:"id_cambiado"}})
+db.consultasMongo.updateOne({id_cambiado:123456}, {$inc:{edad:10}})
+db.consultasMongo.find()
